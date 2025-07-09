@@ -1,28 +1,31 @@
-function List(props) {
-  if (!props.animals) {
-    return <div>Loading...</div>;
-  }
-
-  if (props.animals.length === 0) {
-    return <div>There are no animals in the list!</div>;
-  }
+function Button(props) {
+  const btnStyle = {
+    color: props.color,
+    fontSize: props.fontSize + "px",
+    padding: props.padding + "px",
+  };
 
   return (
-    <ul>
-      {props.animals.map((animal) => {
-        return <li key={animal}>{animal}</li>;
-      })}
-    </ul>
+    <button onClick={props.handleClick} style={btnStyle}>
+      {props.text}
+    </button>
   );
 }
 
 export function Rendering() {
-  const animals = [];
+  const handleButtonClick = () => {
+    window.location.href = "https://www.amazon.in";
+  };
 
   return (
     <div>
-      <h1>Animals: </h1>
-      <List animals={animals} />
+      <Button
+        text="Buy your thing"
+        color="gray"
+        fontSize={12}
+        padding={8}
+        handleClick={handleButtonClick}
+      />
     </div>
   );
 }
