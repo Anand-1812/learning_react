@@ -13,15 +13,13 @@ function Button(props) {
 }
 
 export function Rendering() {
-  const handleButtonClick = () => {
-    window.location.href = "https://www.amazon.in";
-  };
+  const handleButtonClick = () => { };
 
   return (
     <div>
       <Button
         text="Buy your thing"
-        color="gray"
+        color="#808080"
         fontSize={12}
         padding={8}
         handleClick={handleButtonClick}
