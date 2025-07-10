@@ -12,9 +12,17 @@ function Button(props) {
   );
 }
 
-export function Rendering() {
-  const handleButtonClick = () => { };
+function handleButtonClick() {
+  return (
+    <ul>
+      <li>Class</li>
+      <li>Study</li>
+      <li>sleep</li>
+    </ul>
+  );
+}
 
+export function Rendering() {
   return (
     <div>
       <Button
