@@ -10,6 +10,12 @@ function App() {
     <>
       <h1>Hello World</h1>
       <p>in react, using vite</p>
+      <ul>
+        <li>Study</li>
+        <li>Eat</li>
+        <li>Sleep</li>
+        <li>Repeat</li>
+      </ul>
     </>
   );
 }
