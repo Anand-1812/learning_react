@@ -1,16 +1,28 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
+const COLORS = ["black", "grey", "orange", "yellow"];
+
 function App() {
-  const [count, setCount] = useState(0);
+  const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+
+  const onButtonClick = (color) => {
+    setBackgroundColor(color);
+  };
 
   return (
-    <>
-      <h1>Hello World</h1>
-      <p>in react, using vite</p>
-    </>
+    <div className="App" style={{ backgroundColor }}>
+      {COLORS.map((color) => (
+        <button
+          type="button"
+          key={color}
+          onClick={() => onButtonClick(color)}
+          className={backgroundColor === color ? "selected" : ""}
+        >
+          {color}
+        </button>
+      ))}
+    </div>
   );
 }
 
