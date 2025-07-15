@@ -2,21 +2,31 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [person, setPerson] = useState({ name: "johh", age: 54 });
+  const [isSent, setIsSent] = useState(false);
+  const [message, setMessage] = useState("Hi!");
 
-  const handleIncreaseAge = () => {
-    console.log("In handle increase age before set person call", person);
-    setPerson({ ...person, age: person.age + 1 });
-    console.log("After set person call", person);
-  };
+  if (isSent) {
+    return <h1>Your message is on it's way!</h1>;
+  }
 
   return (
-    <>
-      <h1>{person.name}</h1>
-      <h2>{person.age}</h2>
-      <button onClick={handleIncreaseAge}>Increase age</button>
-    </>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setIsSent(true);
+        sendMessage(message);
+      }}
+    >
+      <textarea
+        placeholder="Message"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      />
+      <button type="submit">Send</button>
+    </form>
   );
 }
+
+function sendMessage(message) {}
 
 export default App;
