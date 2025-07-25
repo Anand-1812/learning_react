@@ -3,7 +3,6 @@ import "./App.css";
 import ChatRoom from "./effects";
 
 export default function App() {
-  const [activeIndex, setActiveIndex] = useState(0);
 
   // how to use effects
 
