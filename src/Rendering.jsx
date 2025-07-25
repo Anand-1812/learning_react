@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-class ClassInput extends Component {
+class Rendering extends Component {
   constructor(props) {
     super(props);
 
@@ -11,21 +11,41 @@ class ClassInput extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+
   }
 
   handleInputChange(e) {
-    this.setState((state) => ({
-      ...state,
+    this.setState({
       inputVal: e.target.value,
-    }));
+    });
   }
-
   handleSubmit(e) {
     e.preventDefault();
-    this.setState((state) => ({
-      todos: state.todos.concat(state.inputVal),
-      inputVal: "",
-    }));
+    const trimmed = this.state.inputVal.trim();
+    if (trimmed === "") return;
+
+    this.setState(
+      (state) => ({
+        todos: [...state.todos, trimmed],
+        inputVal: "",
+      }),
+      () => {
+        if (typeof this.props.updateTodoCount === "function") {
+          this.props.updateTodoCount(this.state.todos.length);
+        }
+      }
+    );
+  }
+
+
+  handleDelete(todoToDelete) {
+    this.setState(
+      (state) => ({
+        todos: state.todos.filter((todo) => todo !== todoToDelete),
+      }),
+      () => this.props.updateTodoCount(this.state.todos.length)
+    );
   }
 
   render() {
@@ -46,7 +66,10 @@ class ClassInput extends Component {
         <h4>All the tasks!</h4>
         <ul>
           {this.state.todos.map((todo) => (
-            <li key={todo}>{todo}</li>
+            <li key={todo}>
+              {todo}{" "}
+              <button onClick={() => this.handleDelete(todo)}>Delete</button>
+            </li>
           ))}
         </ul>
       </section>
@@ -54,5 +77,5 @@ class ClassInput extends Component {
   }
 }
 
-export default ClassInput;
+export default Rendering;
 
