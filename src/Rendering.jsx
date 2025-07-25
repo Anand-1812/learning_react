@@ -12,7 +12,6 @@ class Rendering extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-
   }
 
   handleInputChange(e) {
@@ -20,6 +19,7 @@ class Rendering extends Component {
       inputVal: e.target.value,
     });
   }
+
   handleSubmit(e) {
     e.preventDefault();
     const trimmed = this.state.inputVal.trim();
@@ -38,13 +38,16 @@ class Rendering extends Component {
     );
   }
 
-
   handleDelete(todoToDelete) {
     this.setState(
       (state) => ({
         todos: state.todos.filter((todo) => todo !== todoToDelete),
       }),
-      () => this.props.updateTodoCount(this.state.todos.length)
+      () => {
+        if (typeof this.props.updateTodoCount === "function") {
+          this.props.updateTodoCount(this.state.todos.length);
+        }
+      }
     );
   }
 

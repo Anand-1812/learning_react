@@ -6,7 +6,7 @@ class CountTodo extends Component {
     super(props);
 
     this.state = {
-      todoCount: 0
+      todoCount: 0,
     };
 
     this.updateTodoCount = this.updateTodoCount.bind(this);
