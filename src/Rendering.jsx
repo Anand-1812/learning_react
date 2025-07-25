@@ -1,41 +1,42 @@
 import { useState } from "react";
 
-export function Rendering() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+const Rendering = ({ name }) => {
+  const [todos, setTodos] = useState(["Just some demo tasks", "As an example"]);
+  const [inputVal, setInputVal] = useState("");
 
-  const fullName = firstName + " " + lastName;
+  const handleInputChange = (e) => {
+    setInputVal(e.target.value);
+  };
 
-  const [age, setAge] = useState(59);
-
-  function handleFirstNameChange(e) {
-    setFirstName(e.target.value);
-  }
-
-  function handleLastNameChange(e) {
-    setLastName(e.target.value);
-  }
-
-  const handleIncreaseAge = () => {
-    setAge(age + 1);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setTodos((prevTodos) => [...prevTodos, inputVal]);
+    setInputVal("");
   };
 
   return (
-    <>
-      <label>
-        First name: <input value={firstName} onChange={handleFirstNameChange} />
-      </label>
-      <label>
-        Last Name: <input value={lastName} onChange={handleLastNameChange} />
-      </label>
-
-      <div>
-        <h1>Person Details</h1>
-        <p>{fullName}</p>
-        <p>{age}</p>
-      </div>
-
-      <button onClick={handleIncreaseAge}>Increase Age</button>
-    </>
+    <section>
+      <h3>{name}</h3>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="task-entry">Enter a task: </label>
+        <input
+          type="text"
+          id="task-entry"
+          name="task-entry"
+          value={inputVal}
+          onChange={handleInputChange}
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <h4>All the tasks!</h4>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo}>{todo}</li>
+        ))}
+      </ul>
+    </section>
   );
-}
+};
+
+export default Rendering;
+

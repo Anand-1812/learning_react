@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { createConnection } from "./chat";
 
-const serverUrl = 'https://localhost:5173';
+const serverUrl = 'https://localhost:5174';
 
 export default function ChatRoom({ roomId }) {
   useEffect(() => {
@@ -10,7 +10,7 @@ export default function ChatRoom({ roomId }) {
 
     // cleanup
     return () => connection.disconnect();
-  }, roomId);
+  }, [roomId]);
 
   return <h3>Welcome to the {roomId} room!</h3>
 }
