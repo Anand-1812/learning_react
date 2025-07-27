@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App component > renders heading through button 1`] = `
+<div>
+  <button
+    type="button"
+  >
+    click me
+  </button>
+  <h1>
+    Nice heading
+  </h1>
+</div>
+`;
