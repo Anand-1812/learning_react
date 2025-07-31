@@ -1,6 +1,7 @@
 import {useState } from "react";
 import "./App.css";
 import ChatRoom from "./effects";
+import Image from "./dataFetch";
 
 export default function App() {
 
@@ -28,6 +29,7 @@ export default function App() {
         {show && <hr />}
         {show && <ChatRoom roomId={roomId} />}
       </div>
+      <div>{Image}</div>
     </>
   );
 }
